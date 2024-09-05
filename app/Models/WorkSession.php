@@ -12,6 +12,7 @@ class WorkSession extends Model
         'start_time',
         'end_time',
         'total_hours',
+        'launch_taken',
         'description'
     ];
 

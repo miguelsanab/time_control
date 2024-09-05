@@ -37,6 +37,10 @@
                                 <form action="{{ route('sessions.end', $session->id) }}" method="POST">
                                     @csrf
                                     <input type="text" name="description" class="form-control mb-2" placeholder="Descripción" required>
+                                    <div class="form-check">
+                                        <input type="checkbox" name="lunch_taken" class="form-check-input" id="lunchTaken{{ $session->id }}">
+                                        <label class="form-check-label" for="lunchTaken{{ $session->id }}">Tomé una hora de almuerzo</label>
+                                    </div>
                                     <button type="submit" class="btn btn-primary">Terminar</button>
                                 </form>
                                 @endif
