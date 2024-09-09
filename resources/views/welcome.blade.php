@@ -12,6 +12,11 @@
         @auth
             <h2 class="text-center mb-4">Mis Sesiones de Trabajo</h2>
 
+            <!-- Botón para descargar el reporte en PDF -->
+            <div class="text-right mb-3">
+                <a href="{{ route('reporte.pdf') }}" class="btn btn-info" target="_blank">Descargar Reporte en PDF</a>
+            </div>
+
             @if ($sessions->isNotEmpty())
                 <table class="table table-bordered">
                     <thead class="thead-light">
@@ -37,11 +42,14 @@
                                 <form action="{{ route('sessions.end', $session->id) }}" method="POST">
                                     @csrf
                                     <input type="text" name="description" class="form-control mb-2" placeholder="Descripción" required>
+                                    
+                                    <!-- Checkbox para hora de almuerzo -->
                                     <div class="form-check">
                                         <input type="checkbox" name="lunch_taken" class="form-check-input" id="lunchTaken{{ $session->id }}">
                                         <label class="form-check-label" for="lunchTaken{{ $session->id }}">Tomé una hora de almuerzo</label>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Terminar</button>
+
+                                    <button type="submit" class="btn btn-primary mt-2">Terminar</button>
                                 </form>
                                 @endif
                             </td>

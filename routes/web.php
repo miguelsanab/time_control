@@ -1,8 +1,8 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkSessionController;
+use App\Http\Controllers\PDFController; // Importar el controlador de PDF
 use Illuminate\Support\Facades\Auth;
 
 // Rutas para autenticación
@@ -19,7 +19,10 @@ Route::get('/', function () {
 
 // Rutas protegidas por autenticación
 Route::middleware(['auth'])->group(function () {
+    // Rutas de sesiones de trabajo
     Route::post('/sessions/start', [WorkSessionController::class, 'startSession'])->name('sessions.start');
     Route::post('/sessions/end/{id}', [WorkSessionController::class, 'endSession'])->name('sessions.end');
     Route::get('/sessions', [WorkSessionController::class, 'index'])->name('sessions.index');
-});
+
+    // Ruta para generar el reporte en PDF
+    Route::get('/reporte/pdf', [WorkSessionController::class, 'generarPDF'])->name('reporte.pdf');});
